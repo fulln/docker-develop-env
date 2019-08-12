@@ -12,6 +12,9 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql:rw
       - ./mysql/my.cnf:/etc/my.cnf  
+      - ./mysql/sql:/docker-entrypoint-initdb.d/
+    ports: 
+      - "3306:3306"  
   redis:
     restart: always
     image: redis:4.0.9
@@ -34,6 +37,17 @@ services:
     environment: 
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+  mongo:
+    container_name: mongo         
+    image: mongo
+    ports:
+      - "27777:27017"          
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=fulln
+        - MONGO_INITDB_ROOT_PASSWORD=mongo2451
+    volumes:     
+      - ./mongo/config/:/data/configdb
+      - ./mongo/db/:/data/db    
 networks:
   net-spring-db:   
     driver: bridge  
