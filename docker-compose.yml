@@ -1,0 +1,39 @@
+version: '3'
+services:      
+  db:
+    image: 'mysql/mysql-server:5.7'
+    restart: always       
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: "qq1203943228"   
+    networks:
+      - net-spring-db                  
+    user: root   
+    volumes:
+      - ./mysql/data:/var/lib/mysql:rw
+      - ./mysql/my.cnf:/etc/my.cnf  
+  redis:
+    restart: always
+    image: redis:4.0.9
+    container_name: redis            
+    command: redis-server --requirepass "ZV5ut2FNPp/5iqE1l5feIg=="     
+    networks:
+      - net-spring-db     
+    volumes:
+      -  ./redis/redis.conf:/etc/redis/redis.conf 
+      -  ./redis/data:/data 
+    ports: 
+      - "6379:6379"
+  rabbitmq:
+    image: 'rabbitmq:management'
+    container_name: rabbitmq
+    ports:
+     - "15672:15672"
+     - "5671-5672:5671-5672"
+    restart: always
+    environment: 
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+networks:
+  net-spring-db:   
+    driver: bridge  
