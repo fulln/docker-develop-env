@@ -37,6 +37,19 @@ services:
     environment: 
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+  zookeeper:
+    image: zookeeper
+    container_name: zookeeper
+    ports:
+     - '2181:2181' 
+    volumes:
+ #    - /etc/localtime:/etc/localtime
+     - ./zk/conf/zoo.cfg:/opt/zookeeper-3.4.9/conf/zoo.cfg
+     - ./zk/data:/opt/zookeeper-3.4.9/data
+     - ./zk/log:/opt/zookeeper-3.4.9/logs
+     - ./zk/zkServer.sh:/opt/zookeeper-3.4.9/bin/zkServer.sh    --privileged=true 
+    networks: 
+     - net-spring-db    
   mongo:
     container_name: mongo         
     image: mongo
