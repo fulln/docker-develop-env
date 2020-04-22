@@ -44,6 +44,7 @@ services:
      - '2181:2181' 
     volumes:
  #    - /etc/localtime:/etc/localtime
+ #    - /etc/localtime:/etc/localtime:ro 修改容器时区为东8区 
      - ./zk/conf/zoo.cfg:/opt/zookeeper-3.4.9/conf/zoo.cfg
      - ./zk/data:/opt/zookeeper-3.4.9/data
      - ./zk/log:/opt/zookeeper-3.4.9/logs
