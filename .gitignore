@@ -7,8 +7,6 @@
 mysql/data/
 mongo/db/
 redis/data/
-es/data/
-
 # Test binary, build with `go test -c`
 *.test
 
