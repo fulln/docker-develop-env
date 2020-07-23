@@ -4,6 +4,9 @@
 *.dll
 *.so
 *.dylib
+mysql/data/
+mongo/db/
+redis/data/
 
 # Test binary, build with `go test -c`
 *.test
