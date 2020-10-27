@@ -1,0 +1,34 @@
+## 集群名称
+cluster:
+        name: ESlocal
+## 节点名称 不配置则自动生成
+node:
+        name: "Lnode"
+network:
+        host: 127.0.0.1
+## 集群部署        
+discovery:
+        zen:
+                ping:
+                        unicast:
+                                hosts: 
+                                        - "localhost:[9300-9400]"
+
+## 数据存放地址
+path:
+        conf: /opt/data/es/config
+        data: /opt/data/es/data
+        logs: /opt/data/es/logs
+        work: /opt/data/es/work
+        plugins: /opt/data/plugins
+## 设置分片和副本
+index:
+        ## 分片
+        number_of_shards: 1
+        ## 副本
+        number_of_replicas: 1
+
+ 
+
+
+
