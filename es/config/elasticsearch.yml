@@ -4,6 +4,8 @@ cluster:
 ## 节点名称 不配置则自动生成
 node:
         name: "Lnode"
+        ## 主节点
+        master: true
 network:
         host: 127.0.0.1
 ## 集群部署        
