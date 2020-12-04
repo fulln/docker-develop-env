@@ -6,13 +6,13 @@
 |:--|:--|
 |mysql|db|
 |redis|redis|
-|||
-|||
-|||
-|||
-|||
-|||
-|||
+|rabbitmq|rabbitmq|
+|zookeeper|zookeeper|
+|mongoDB|mongo|
+|nginx|nginx|
+|elasticsearch|es|
+|kibana|kibana|
+|consul|consul|
 
 ### 安装方式
 
