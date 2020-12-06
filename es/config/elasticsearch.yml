@@ -7,7 +7,7 @@ node:
         ## 主节点
         master: true
 network:
-        host: 127.0.0.1
+        host: 0.0.0.0
 ## 集群部署        
 discovery:
         zen:
@@ -17,20 +17,20 @@ discovery:
                                         - "localhost:[9300-9400]"
 
 ## 数据存放地址
-path:
-        conf: /opt/data/es/config
-        data: /opt/data/es/data
-        logs: /opt/data/es/logs
-        work: /opt/data/es/work
-        plugins: /opt/data/plugins
+#path:
+        #conf: /opt/data/es/config
+        #data: /opt/data/es/data
+        #logs: /opt/data/es/logs
+        #work: /opt/data/es/work
+        #        plugins: /opt/data/plugins
 ## 设置分片和副本
 index:
         ## 分片
         number_of_shards: 1
         ## 副本
         number_of_replicas: 1
-
- 
-
-
+script:
+        painless:
+                regex:
+                        enabled: true
 
