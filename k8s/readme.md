@@ -69,11 +69,13 @@ subjects:
 ```
 
 然后执行以下命令
+
 	kubectl apply -f user.yaml
 
 * 获取Bearer Token
 
 执行命令
+
 	kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
  
 即可以获得token用来登陆
