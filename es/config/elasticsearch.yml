@@ -17,12 +17,13 @@ discovery:
                                         - "localhost:[9300-9400]"
 
 ## 数据存放地址
-#path:
+path:
         #conf: /opt/data/es/config
         #data: /opt/data/es/data
         #logs: /opt/data/es/logs
         #work: /opt/data/es/work
         #        plugins: /opt/data/plugins
+    repo: /backup/                
 ## 设置分片和副本
 index:
         ## 分片
