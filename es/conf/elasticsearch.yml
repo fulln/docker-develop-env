@@ -2,10 +2,10 @@
 cluster:
         name: ESlocal
 ## 节点名称 不配置则自动生成
-node:
-        name: "Lnode"
+#node:
+#        name: "Lnode"
         ## 主节点
-        master: true
+#        master: true
 network:
         host: 0.0.0.0
 ## 集群部署        
@@ -23,13 +23,13 @@ path:
         #logs: /opt/data/es/logs
         #work: /opt/data/es/work
         #        plugins: /opt/data/plugins
-    repo: /backup/                
+    repo: /usr/share/elasticsearch/backup/                
 ## 设置分片和副本
-index:
+#index:
         ## 分片
-        number_of_shards: 1
+        #        number_of_shards: 1
         ## 副本
-        number_of_replicas: 1
+        #        number_of_replicas: 1
 script:
         painless:
                 regex:
