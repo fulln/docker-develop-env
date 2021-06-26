@@ -44,7 +44,7 @@
 
 * 创建 Service Account 和 ClusterRoleBinding
 
-创建user.yml
+创建user.yaml
 
 ```yml
 apiVersion: v1
@@ -69,11 +69,13 @@ subjects:
 ```
 
 然后执行以下命令
-	kubectl apply -f https://kuboard.cn/install-script/k8s-dashboard/auth.yaml
+
+	kubectl apply -f user.yaml
 
 * 获取Bearer Token
 
 执行命令
+
 	kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
  
 即可以获得token用来登陆
