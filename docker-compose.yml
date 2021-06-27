@@ -45,7 +45,7 @@ services:
      - /etc/localtime:/etc/localtime:ro # 修改容器时区为东8区 
      - ./zk/conf/zoo.cfg:/opt/zookeeper-3.4.9/conf/zoo.cfg
      - ./zk/data:/opt/zookeeper-3.4.9/data
-     - ./zk/log:/opt/zookeeper-3.4.9/logs
+     - ./logs/zk:/opt/zookeeper-3.4.9/logs
      - ./zk/zkServer.sh:/opt/zookeeper-3.4.9/bin/zkServer.sh    --privileged=true 
     networks: 
      - net-spring-db    
@@ -107,6 +107,39 @@ services:
       - 5601:5601
     networks:
       - net-spring-db 
+  kafka-manager: 
+    image: 'kafkamanager/kafka-manager'
+    container_name: kafka-manager
+    environment:
+      ZK_HOSTS: zookeeper
+    ports:
+      - "9000:9000"
+    depends_on:
+      - zookeeper
+      - kafka
+    networks:
+      - net-spring-db
+  kafka:
+    image: 'wurstmeister/kafka'
+    container_name: kafka
+    ports: 
+     - "9092:9092"
+    volumes:
+      -  /etc/localtime:/etc/localtime:ro 
+     - ./logs/kafka:/opt/kafka/logs 
+     - ./kafka:/kafka  
+    depends_on:
+     - zookeeper
+    environment:
+      NO_RECREATE:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_LOG_RETENTION_HOURS: 168
+    restart: unless-stopped               
+    networks: 
+      - net-spring-db      
   consul:
           image: consul:latest
           container_name: consul

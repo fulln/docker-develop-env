@@ -10,6 +10,7 @@ redis/data/
 es/data/
 kibana/data/
 consul/data/
+kafka/
 # Test binary, build with `go test -c`
 *.test
 
