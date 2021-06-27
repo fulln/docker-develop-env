@@ -13,11 +13,13 @@
 |elasticsearch|es|
 |kibana|kibana|
 |consul|consul|
+|kafka|kafka|
+|kafka-manager|kafka-manager|
 
 ### 安装方式
-
-     1. 安装docker
-     2. sh run.sh
+1. 安装docker
+> mac 环境 直接安装`docker desktop`
+2. sh run.sh
 
 ### 使用方式
 
