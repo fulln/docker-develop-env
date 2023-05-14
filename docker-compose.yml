@@ -126,8 +126,8 @@ services:
      - "9092:9092"
     volumes:
       -  /etc/localtime:/etc/localtime:ro 
-     - ./logs/kafka:/opt/kafka/logs 
-     - ./kafka:/kafka  
+      - ./logs/kafka:/opt/kafka/logs 
+      - ./kafka:/kafka  
     depends_on:
      - zookeeper
     environment:
