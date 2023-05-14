@@ -91,10 +91,20 @@ services:
       - ./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml     
       - ./es/data:/usr/share/elasticsearch/data
       - ./es/backup:/usr/share/elasticsearch/backup  
+      - ./es/plugins:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
     networks:
       - net-spring-db
+  cerebro:
+    image: lmenezes/cerebro:0.8.3
+    container_name: cerebro_local
+    ports:
+      - "9000:9000"
+    command:
+      - -Dhosts.0.host=http://es:9200
+    networks:
+      - net-spring-db    
   kibana: 
     image: docker.elastic.co/kibana/kibana:7.8.0
     container_name: kibana
@@ -126,8 +136,8 @@ services:
      - "9092:9092"
     volumes:
       -  /etc/localtime:/etc/localtime:ro 
-     - ./logs/kafka:/opt/kafka/logs 
-     - ./kafka:/kafka  
+      - ./logs/kafka:/opt/kafka/logs 
+      - ./kafka:/kafka  
     depends_on:
      - zookeeper
     environment:
