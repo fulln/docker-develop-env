@@ -1,8 +1,8 @@
 version: '3'
 services:      
   db:
-    image: 'mysql/mysql-server:5.7'
-    restart: always       
+    image: 'mysql/mysql-server:8.0'
+    restart: unless-stopped     
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: "qq1203943228"   
@@ -16,7 +16,7 @@ services:
     ports: 
       - "3306:3306"  
   redis:
-    restart: always
+    restart: unless-stopped
     image: redis:4.0.9
     container_name: redis            
     command: redis-server --requirepass "ZV5ut2FNPp/5iqE1l5feIg=="     
@@ -125,7 +125,7 @@ services:
     ports: 
      - "9092:9092"
     volumes:
-      -  /etc/localtime:/etc/localtime:ro 
+     -  /etc/localtime:/etc/localtime:ro 
      - ./logs/kafka:/opt/kafka/logs 
      - ./kafka:/kafka  
     depends_on:
@@ -156,3 +156,4 @@ services:
 networks:
   net-spring-db:   
     driver: bridge  
+    

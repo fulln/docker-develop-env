@@ -1,3 +1,7 @@
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'qq1203943228' WITH GRANT OPTION;
+create user 'root'@'%' identified by 'qq1203943228';
+
+grant all privileges on *.* to 'root'@'%' with grant option;
+
+flush privileges;
 
