@@ -7,6 +7,6 @@
 
 #docker load < api.tar
 #docker load < get.tar
-
+chmod -R 777 ./;
 docker-compose rm -fs;
 docker-compose up -d
