@@ -1,0 +1,15 @@
+version: '3'
+services:        
+  consul:
+    image: consul:latest
+    container_name: consul
+    ports: 
+          - 8500:8500
+          - 8300:8300
+          - 8600:8600  
+    volumes:     
+            - ./consul/data/:/usr/share/consul/data     
+    environment:
+          - CONSUL_LOCAL_CONFIG={"skip_leave_on_interrupt":true}
+            # 单机启动的时候只用将 -bootstrap-expect  换成 -bootstrap      
+    command: consul agent -bootstrap -server -data-dir=/usr/share/consul/data -client 0.0.0.0 -ui -node=dev1

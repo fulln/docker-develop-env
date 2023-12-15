@@ -1,14 +1,17 @@
 version: '3.1'
-services:
+services:  
   mongo:
+    container_name: mongo         
     image: mongo
+    ports:
+      - "27017:27017"          
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example       
-    volumes:        
-      - /etc/localtime:/etc/localtime
+        - MONGO_INITDB_ROOT_USERNAME=fulln
+        - MONGO_INITDB_ROOT_PASSWORD=mongo2451
+    volumes: 
+      - /etc/localtime:/etc/localtime:ro    
       - ./config/:/data/configdb
-      - ./db:/data/db      
+      - ./db/:/data/db          
   mongo-express:
     image: mongo-express
     ports:
@@ -16,6 +19,6 @@ services:
     depends_on:
       - mongo     
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_ADMINUSERNAME: fulln
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongo2451
+      ME_CONFIG_MONGODB_URL: mongodb://fulln:mongo2451@mongo:27017/

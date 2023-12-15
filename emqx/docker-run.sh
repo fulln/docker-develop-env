@@ -1,0 +1,1 @@
+ docker-compose -p emqx_cluster up -d

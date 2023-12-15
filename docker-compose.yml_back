@@ -48,7 +48,19 @@ services:
      - ./logs/zk:/opt/zookeeper-3.4.9/logs
      - ./zk/zkServer.sh:/opt/zookeeper-3.4.9/bin/zkServer.sh    --privileged=true 
     networks: 
-     - net-spring-db
+     - net-spring-db    
+  mongo:
+    container_name: mongo         
+    image: mongo
+    ports:
+      - "27017:27017"          
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=fulln
+        - MONGO_INITDB_ROOT_PASSWORD=mongo2451
+    volumes: 
+      - /etc/localtime:/etc/localtime:ro    
+      - ./mongo/config/:/data/configdb
+      - ./mongo/db/:/data/db
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
@@ -79,20 +91,10 @@ services:
       - ./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml     
       - ./es/data:/usr/share/elasticsearch/data
       - ./es/backup:/usr/share/elasticsearch/backup  
-      - ./es/plugins:/usr/share/elasticsearch/plugins
     ports:
       - 9200:9200
     networks:
       - net-spring-db
-  cerebro:
-    image: lmenezes/cerebro:0.8.3
-    container_name: cerebro_local
-    ports:
-      - "9000:9000"
-    command:
-      - -Dhosts.0.host=http://es:9200
-    networks:
-      - net-spring-db    
   kibana: 
     image: docker.elastic.co/kibana/kibana:7.8.0
     container_name: kibana
@@ -153,4 +155,4 @@ services:
           command: consul agent -bootstrap -server -data-dir=/usr/share/consul/data -client 0.0.0.0 -ui -node=dev1
 networks:
   net-spring-db:   
-    driver: bridge  
+    driver: bridge      
